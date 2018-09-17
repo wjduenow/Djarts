@@ -8,7 +8,12 @@ from .models import *
 
    
 def index(request):
-    return HttpResponse("Hello, world. You're at the Djart index.")
+    games = Game.objects.all()
+
+    context = {'games': games}
+
+    return render(request, 'index.html', context) 
+
     
 
 
