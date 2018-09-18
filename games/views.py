@@ -16,23 +16,34 @@ def index(request):
 
     
 
+def rules(request):
+    game_types = GameType.objects.all()
+
+    context = {'game_types': game_types}
+
+    return render(request, 'rules.html', context) 
+
+def game_type(request, game_type_id=None):
+    game_type = GameType.objects.get(id=game_type_id)
+
+    context = {'game_type': game_type}
+
+    return render(request, 'game_type.html', context) 
+
+    
+def new_game(request):
+    game_types = GameType.objects.all()
+    players = Player.objects.all()
+
+    context = {'game_types': game_types, 'players': players}
+
+    return render(request, 'new_game.html', context) 
 
 
+def start_game(request):
+    game_types = GameType.objects.all()
+    players = Player.objects.all()
 
-    # context = ({'gym_slots_today': gym_slots_today, 'gym_slots_other': gym_slots_other, 'active_games': active_games, 
-    #             'active_sessions': active_sessions, 'ps_win_ratio': ps_win_ratio, 'ps_point_differential': ps_point_differential, 
-    #             'best_tandem_point_differential': best_tandem_point_differential, 'best_tandem_win_ratio': best_tandem_win_ratio, 
-    #             'ps_win_ratio_bad': ps_win_ratio_bad, 'ps_point_differential_bad': ps_point_differential_bad, 
-    #             'best_tandem_point_differential_bad': best_tandem_point_differential_bad,
-    #             'best_tandem_win_ratio_bad': best_tandem_win_ratio_bad,
-    #             'best_opponent_point_differential':best_opponent_point_differential,
-    #             'best_opponent_win_ratio':best_opponent_win_ratio,
-    #             'best_opponent_point_differential_bad':best_opponent_point_differential_bad,
-    #             'best_opponent_win_ratio_bad':best_opponent_win_ratio_bad,
-    #             'score_lifters':score_lifters,
-    #             'score_draggers':score_draggers,
-    #             'win_lifters':win_lifters,
-    #             'win_draggers':win_draggers})
+    context = {'game_types': game_types, 'players': players}
 
-    # return HttpResponse(template.render(context, request))
-
+    return render(request, 'new_game.html', context) 

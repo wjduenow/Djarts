@@ -3,6 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+.DS_Store
+djarts/credentials.json
+token.json
+djarts/djarts_google_service_account.json
+
 # C extensions
 *.so
 

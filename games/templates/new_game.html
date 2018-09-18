@@ -3,7 +3,6 @@
 
 <!--
 <img src="{% static "games/images/darts.png" %}" alt="My image"/>
-https://html5up.net/phantom
 -->
 <!DOCTYPE HTML>
 
@@ -51,78 +50,75 @@ https://html5up.net/phantom
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-							<header>
-								<h1>This is Djarts, a dart scoring system, optimized for stat collection.</h1>
-								<p>Select your choice from the options below:</p>
-							</header>
-							<section class="tiles">
-								<article class="style1">
-									<span class="image">
-										<img src="{% static "games/images/pic01.jpg" %}" alt="" />
-									</span>
-									<a href="/new_game">
-										<h2>New Game</h2>
-										<div class="content">
-											<p>Start a new game</p>
-										</div>
-									</a>
-								</article>
-								<article class="style2">
-									<span class="image">
-										<img src="{% static "games/images/pic02.jpg" %}" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Running Games</h2>
-										<div class="content">
-											<p>Return to a running game</p>
-										</div>
-									</a>
-								</article>
-								<article class="style3">
-									<span class="image">
-										<img src="{% static "games/images/pic03.jpg" %}" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Leaderboard</h2>
-										<div class="content">
-											<p>View leaderboard.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style4">
-									<span class="image">
-										<img src="{% static "games/images/pic04.jpg" %}" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Players</h2>
-										<div class="content">
-											<p>View players.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style5">
-									<span class="image">
-										<img src="{% static "games/images/pic05.jpg" %}" alt="" />
-									</span>
-									<a href="/rules">
-										<h2>Rules</h2>
-										<div class="content">
-											<p>Read game rules.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style6">
-									<span class="image">
-										<img src="{% static "games/images/pic06.jpg" %}" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Legends</h2>
-										<div class="content">
-											<p>View the Hall of Legends.</p>
-										</div>
-									</a>
-								</article>
-							</section>
+
+
+
+						<section>
+							<h2>New Game</h2>
+							<form method="post" action="/start_game">
+								{% csrf_token %}
+								<div class="row gtr-uniform">
+									<div class="col-6 col-12-xsmall">
+										<select name="players[]">
+											<option value="">Player One</option>
+										 	{% for player in players %}
+												<option value="{{game_type.id}}">{{player}}</option>
+											{% endfor %}
+										</select>
+									</div>
+									<div class="col-6 col-12-xsmall">
+										<select name="players[]">
+											<option value="">Player Two</option>
+										 	{% for player in players %}
+												<option value="{{game_type.id}}">{{player}}</option>
+											{% endfor %}
+										</select>
+									</div>
+									<div class="col-12">
+										<select name="game_type">
+											<option value="">Game Type</option>
+										 	{% for game_type in game_types %}
+												<option value="{{game_type.id}}">{{game_type.name}}</option>
+											{% endfor %}
+										</select>
+									</div>
+<!--
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-low" name="demo-priority" checked="">
+										<label for="demo-priority-low">Low</label>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-normal" name="demo-priority">
+										<label for="demo-priority-normal">Normal</label>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-high" name="demo-priority">
+										<label for="demo-priority-high">High</label>
+									</div>
+									<div class="col-6 col-12-small">
+										<input type="checkbox" id="demo-copy" name="demo-copy">
+										<label for="demo-copy">Email me a copy</label>
+									</div>
+									<div class="col-6 col-12-small">
+										<input type="checkbox" id="demo-human" name="demo-human" checked="">
+										<label for="demo-human">Not a robot</label>
+									</div>
+-->
+									<div class="col-12">
+										<div class="textarea-wrapper"><textarea name="demo-message" id="demo-message" placeholder="Game Notes" rows="1" style="overflow: hidden; resize: none; height: 69px;"></textarea></div>
+									</div>
+
+									<div class="col-12">
+										<ul class="actions">
+											<li><input type="submit" value="Start Game" class="primary"></li>
+											<li><input type="reset" value="Reset"></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+						</section>
+
+
 						</div>
 					</div>
 

@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 class GameType(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
+    rules = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -27,12 +28,12 @@ class Location(models.Model):
         return self.name
 
 class Player(models.Model):
-    user = models.OneToOneField(User, blank=True, on_delete=models.DO_NOTHING)
+    #user = models.OneToOneField(User, blank=True, on_delete=models.DO_NOTHING)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200, blank=True, null=True)
     nick_name = models.CharField(max_length=200, blank=True, null=True)
     status = models.CharField(max_length=200, blank=True, null=True, choices=[('Active', 'Active'), ('Inactive', 'Inactive')])
-    last_game_date = models.DateTimeField(null=True)
+    last_game_date = models.DateTimeField(blank=True, null=True)
     last_game_id = models.IntegerField(blank=True, null=True)
     ninety_day_games_played = models.FloatField(default=2)
     ninety_day_plus_minus = models.FloatField(default=2)
