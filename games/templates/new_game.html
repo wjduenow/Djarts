@@ -18,34 +18,8 @@
 		<!-- Wrapper -->
 			<div id="wrapper">
 
-				<!-- Header -->
-					<header id="header">
-						<div class="inner">
-
-							<!-- Logo -->
-								<a href="/" class="logo">
-									<span class="symbol"><img src="{% static "games/images/logo.svg" %}" alt="" /></span><span class="title">Djarts</span>
-								</a>
-
-							<!-- Nav -->
-								<nav>
-									<ul>
-										<li><a href="#menu">Menu</a></li>
-									</ul>
-								</nav>
-
-						</div>
-					</header>
-
 				<!-- Menu -->
-					<nav id="menu">
-						<h2>Menu</h2>
-						<ul>
-							<li><a href="/">Home</a></li>
-							<li><a href="/rules">Rules</a></li>
-							<li><a href="/">New Game</a></li>
-						</ul>
-					</nav>
+					{% include "menu_partial.html" %}
 
 				<!-- Main -->
 					<div id="main">
@@ -55,22 +29,22 @@
 
 						<section>
 							<h2>New Game</h2>
-							<form method="post" action="/start_game">
+							<form method="post" action="/game/">
 								{% csrf_token %}
 								<div class="row gtr-uniform">
 									<div class="col-6 col-12-xsmall">
-										<select name="players[]">
+										<select name="player_1">
 											<option value="">Player One</option>
 										 	{% for player in players %}
-												<option value="{{game_type.id}}">{{player}}</option>
+												<option value="{{player.id}}">{{player}}</option>
 											{% endfor %}
 										</select>
 									</div>
 									<div class="col-6 col-12-xsmall">
-										<select name="players[]">
+										<select name="player_2">
 											<option value="">Player Two</option>
 										 	{% for player in players %}
-												<option value="{{game_type.id}}">{{player}}</option>
+												<option value="{{player.id}}">{{player}}</option>
 											{% endfor %}
 										</select>
 									</div>
@@ -82,30 +56,16 @@
 											{% endfor %}
 										</select>
 									</div>
-<!--
-									<div class="col-4 col-12-small">
-										<input type="radio" id="demo-priority-low" name="demo-priority" checked="">
-										<label for="demo-priority-low">Low</label>
-									</div>
-									<div class="col-4 col-12-small">
-										<input type="radio" id="demo-priority-normal" name="demo-priority">
-										<label for="demo-priority-normal">Normal</label>
-									</div>
-									<div class="col-4 col-12-small">
-										<input type="radio" id="demo-priority-high" name="demo-priority">
-										<label for="demo-priority-high">High</label>
-									</div>
-									<div class="col-6 col-12-small">
-										<input type="checkbox" id="demo-copy" name="demo-copy">
-										<label for="demo-copy">Email me a copy</label>
-									</div>
-									<div class="col-6 col-12-small">
-										<input type="checkbox" id="demo-human" name="demo-human" checked="">
-										<label for="demo-human">Not a robot</label>
-									</div>
--->
 									<div class="col-12">
-										<div class="textarea-wrapper"><textarea name="demo-message" id="demo-message" placeholder="Game Notes" rows="1" style="overflow: hidden; resize: none; height: 69px;"></textarea></div>
+										<select name="location">
+											<option value="">Location</option>
+										 	{% for location in locations %}
+												<option value="{{location.id}}">{{location.name}}</option>
+											{% endfor %}
+										</select>
+									</div>
+									<div class="col-12">
+										<div class="textarea-wrapper"><textarea name="notes" id="demo-message" placeholder="Game Notes" rows="1" style="overflow: hidden; resize: none; height: 69px;"></textarea></div>
 									</div>
 
 									<div class="col-12">
@@ -125,42 +85,7 @@
 				<!-- Footer -->
 					<footer id="footer">
 						<div class="inner">
-<!--
-							<section>
 
-
-								<h2>Get in touch</h2>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<input type="text" name="name" id="name" placeholder="Name" />
-										</div>
-										<div class="field half">
-											<input type="email" name="email" id="email" placeholder="Email" />
-										</div>
-										<div class="field">
-											<textarea name="message" id="message" placeholder="Message"></textarea>
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send" class="primary" /></li>
-									</ul>
-								</form>
-							</section>
-							<section>
-								<h2>Follow</h2>
-								<ul class="icons">
-									<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
-									<li><a href="#" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
-									<li><a href="#" class="icon style2 fa-500px"><span class="label">500px</span></a></li>
-									<li><a href="#" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
-									<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
-								</ul>
-							</section>
--->
 							<ul class="copyright">
 								<li>&copy; Untitled. All rights reserved</li><li>Brought to you by: <a href="http://www.raybeam.com">Raybeam, Inc.</a></li>
 							</ul>

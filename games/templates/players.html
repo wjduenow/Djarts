@@ -19,15 +19,18 @@
 			<div id="wrapper">
 
 
+
 				<!-- Menu -->
 					{% include "menu_partial.html" %}
 
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-							<h1>{{game_type.name}}</h1>
-							<span class="image main"><img src="images/pic13.jpg" alt="" /></span>
-							<p>{{game_type.rules|safe}}</p>
+							{% for player in players %}
+								<a href="/player/{{ player.id }}">{{ player.id }}</a> {{ player.first_name }}
+								<br><br>
+							{% endfor %}
+							
 						</div>
 					</div>
 

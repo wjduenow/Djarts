@@ -1,5 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime, timedelta
+import pytz
+
+utc=pytz.UTC
+
 
 # Create your models here.
 
@@ -54,17 +59,32 @@ class Player(models.Model):
 
 class Game(models.Model):
     game_type = models.ForeignKey(GameType, on_delete=models.DO_NOTHING)
-    players = models.ManyToManyField(Player)
+    player_1 = models.ForeignKey(Player, related_name = 'player_1', on_delete=models.DO_NOTHING)
+    player_2 = models.ForeignKey(Player, related_name = 'player_2', on_delete=models.DO_NOTHING)
     location = models.ForeignKey(Location, on_delete=models.DO_NOTHING)
-    name = models.CharField(max_length=200)
+    notes = models.CharField(max_length=2000, blank=True, null=True)
     status = models.CharField(max_length=200, blank=True, null=True)
     start_time = models.DateTimeField(auto_now_add=True)
     end_time = models.DateTimeField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    @property
+    def game_duration_friendly(self):
+
+        if self.end_time == None:
+            game_end = datetime.now()
+        else:
+            game_end = self.end_time
+
+        return utc.localize(game_end) - self.start_time
+
+
     def __str__(self):
         return "%s: %s (%s)"  % (self.name, self.start_time, self.game_duration_friendly)
+
+
+    
 
 
 

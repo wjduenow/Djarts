@@ -19,34 +19,8 @@ https://html5up.net/phantom
 		<!-- Wrapper -->
 			<div id="wrapper">
 
-				<!-- Header -->
-					<header id="header">
-						<div class="inner">
-
-							<!-- Logo -->
-								<a href="/" class="logo">
-									<span class="symbol"><img src="{% static "games/images/logo.svg" %}" alt="" /></span><span class="title">Djarts</span>
-								</a>
-
-							<!-- Nav -->
-								<nav>
-									<ul>
-										<li><a href="#menu">Menu</a></li>
-									</ul>
-								</nav>
-
-						</div>
-					</header>
-
 				<!-- Menu -->
-					<nav id="menu">
-						<h2>Menu</h2>
-						<ul>
-							<li><a href="/">Home</a></li>
-							<li><a href="/rules">Rules</a></li>
-							<li><a href="/">New Game</a></li>
-						</ul>
-					</nav>
+				{% include "menu_partial.html" %}
 
 				<!-- Main -->
 					<div id="main">
@@ -71,7 +45,7 @@ https://html5up.net/phantom
 									<span class="image">
 										<img src="{% static "games/images/pic02.jpg" %}" alt="" />
 									</span>
-									<a href="generic.html">
+									<a href="/games">
 										<h2>Running Games</h2>
 										<div class="content">
 											<p>Return to a running game</p>
@@ -93,7 +67,7 @@ https://html5up.net/phantom
 									<span class="image">
 										<img src="{% static "games/images/pic04.jpg" %}" alt="" />
 									</span>
-									<a href="generic.html">
+									<a href="/players">
 										<h2>Players</h2>
 										<div class="content">
 											<p>View players.</p>
